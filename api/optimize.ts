@@ -3,7 +3,9 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 export default async (req: VercelRequest, res: VercelResponse) => {
+	console.log("API Request Received");
 	const data = req.body; // You'll need to pass the request body as needed
+	console.log("Data received from the front-end:", req.body); // Log the data received
 	try {
 		const apiResponse = await fetch('https://test-api-python-vercel.vercel.app/optimize/', {
 			method: 'POST',
@@ -14,11 +16,12 @@ export default async (req: VercelRequest, res: VercelResponse) => {
 			},
 			body: JSON.stringify(data)
 		});
-
+		console.log("Optimization completed")
 		const json = await apiResponse.json();
-
+		console.log(json)
 		if (apiResponse.ok) {
 			res.status(200).json(json);
+			console.log("reponse ok")
 		} else {
 			res.status(apiResponse.status).json(json);
 		}

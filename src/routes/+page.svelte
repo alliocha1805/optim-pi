@@ -16,6 +16,7 @@
 
 	
 	async function optimize(data){
+		console.log("launching data request")
 		const res = await fetch('/api/optimize', {
 			method: 'POST',
 			headers: {
@@ -24,10 +25,13 @@
 			},
 			body: JSON.stringify(data),
 			})
-		
+		console.log("waiting data response")
+		console.log(res)
 		const json = await res.json()
+		console.log(json)
 		if(res.ok){
 			resultat = JSON.stringify(json);
+			console.log(json)
 		}
 		else{
 			console.log(json)
@@ -77,7 +81,7 @@
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="Test Dashboard KOnsult.io avec Skeleton UI" />
+	<meta name="description" content="Test Opti-PI avec Skeleton UI" />
 </svelte:head>
 
 <div class="p-10 space-4">
