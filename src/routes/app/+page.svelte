@@ -169,36 +169,65 @@
 	{#if resultReceived}
 		{#if resultat}
 		<div class="card p-4 mt-5">
-			<p> Valeur maximale pouvant être délivrée :{JSON.parse(resultat.ValeurTotale)} </p><br/>
-			<p> Features à prioriser</p>
-			<ul class="list">
-			{#each Object.entries(resultat.Feature) as [nom, statut]}
-			<li>
-				{#if statut == false}
-				<span><svg class="h-8 w-8 text-red-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
-				  </svg>
-				  </span>
-				{/if}
-				{#if statut == true}
-				<span><svg class="h-8 w-8 text-green-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-				  </svg>
-				  </span>
-				{/if}
-				<span class="flex-auto">{nom}</span>
-			</li>
-			{/each}
-			</ul><br/>
-			<p> Charge equipe</p>
-			<ul class="list">
-			{#each Object.entries(resultat.ChargeEquipes) as [nom, valeur]}
-			<li>
-				<span>{nom}</span>
-				<span class="flex-auto">{valeur}</span>
-			</li>
-			{/each}
-			</ul>
+			<div class="flex flex-col lg:flex-row">
+				<div class="table-container mr-5 lg:p-4 m-5">
+					<!-- Native Table Element -->
+					<table class="table table-hover table-compact">
+						<thead>
+							<tr>
+								<th class="table-cell-fit">Feature à prendre</th>
+								<th class="table-cell-fit">Nom</th>
+							</tr>
+						</thead>
+						<tbody>
+							{#each Object.entries(resultat.Feature) as [nom, statut]}
+								<tr>
+									{#if statut == false}
+									<td class="table-cell-fit">
+										<svg class="h-8 w-8 text-red-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
+										</svg>
+									</td>
+									{/if}
+									{#if statut == true}
+									<td class="table-cell-fit">
+										<svg class="h-8 w-8 text-green-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+										</svg>
+									</td>		
+									{/if}
+									<td class="table-cell-fit">{nom}</td>
+								</tr>
+							{/each}
+						</tbody>
+						<tfoot>
+							<tr>
+								<th colspan="1">Valeur métier delivrable au maximum</th>
+								<td class="text-lime-600"><b>{JSON.parse(resultat.ValeurTotale)}</b></td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+				<div class="table-container mr-5 lg:p-4 m-5">
+					<!-- Native Table Element -->
+					<table class="table table-hover table-compact">
+						<thead>
+							<tr>
+								<th class="table-cell-fit">Equipe</th>
+								<th class="table-cell-fit">Charge de l'équipe(en %)</th>
+							</tr>
+						</thead>
+						<tbody>
+							{#each Object.entries(resultat.ChargeEquipes) as [nomEquipe, charge]}
+								<tr>
+									<td class="table-cell-fit">{nomEquipe}</td>		
+									<td class="table-cell-fit">{charge * 100}</td>
+								</tr>
+							{/each}
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 		{/if}
 	

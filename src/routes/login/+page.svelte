@@ -17,7 +17,7 @@
         <input class="input" title="Input (password)" type="password" placeholder="password" autocomplete="new-password"  required/>
       </label>
       <div class="flex justify-center items-center">
-        <button type="submit" class="btn variant-filled-primary m-5">Connexion</button>
+        <button type="submit" class="btn variant-filled-primary m-5"><a href="../app/">Connexion</a></button>
       </div>
     </form>
   </div>

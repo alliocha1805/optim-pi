@@ -40,30 +40,27 @@ function showKey()
   </p>
   <ul class="mt-3 mb-5">
     <li>- <code class="code">maxLoad</code> : la charge maximale par équipe en  pourcentage  de la capacité totale : "1" équivaut  à une charge de 100%</li>
-    <li>- <code class="code">tasks</code> : une liste de liste contenant les informations de chaque Feature. Chaque feature est une liste sous la forme ["valeur feature","charge relative equipe 1","charge relative equipe 2" ...]</li>
+    <li>- <code class="code">tasks</code> : une liste de liste contenant les informations de chaque Feature. Chaque feature est une liste sous la forme ["nom feature","valeur feature","charge relative equipe 1","charge relative equipe 2" ...]</li>
   </ul>
   <p>La charge relative d'une equipe sur une feature est simple à  calculer : charge  Feature / Capacité total sur  la période et  sera donc exprimé avec  un nombre à virgule entre 1 et 0</p><br>
-  <p>Par exemple pour optimiser un Product Increment Planning avec 5 équipes  , 5 Features et  une charge maximum de 110% le body pourrait ressembler à ceci : </p>
+  <p>Par exemple pour optimiser un Product Increment Planning avec 2 équipes  , 2 Features et  une charge maximum de 100% le body pourrait ressembler à ceci : </p>
   <CodeBlock class="m-5" language="json" code={`{
-  "data": {
-    "maxLoad": 1.1,
-    "tasks": [
-      [
-        10,0.1,0.5,0,0,0
-      ],
-      [
-		13,1,0.5,0.25,1,0.75
-      ],
-      [
-		5,0,0.25,0,0.75,0.1
-      ],
-      [
-        3,0,0.1,0,0.1,0
-      ],
-      [
-        3,0,0.1,0,0.1,0
+    "data": {
+      "maxLoad": 1,
+      "tasks": [
+        [
+          "nom Feature 1",
+          54,
+          0.89,
+          1
+        ],
+        [
+          "nom Feature 2",
+          65,
+          1,
+          0.65
+        ]
       ]
-    ]
-  }
-}`}></CodeBlock>
+    }
+  }`}></CodeBlock>
 </div>
